@@ -1,5 +1,3 @@
-import Netology.PurchaseItem;
-
 public class PosterManager {
     //Creation of list of films
     private PosterFilm[] films = new PosterFilm[0];
