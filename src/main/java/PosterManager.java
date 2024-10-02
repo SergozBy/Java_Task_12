@@ -1,8 +1,22 @@
 public class PosterManager {
-    //Creation of list of films
+    /** Creation of list of films
+     *
+     */
     private PosterFilm[] films = new PosterFilm[0];
 
-    // Adding new film to the list of films
+    private int maxFilms;
+
+    public PosterManager() {
+        this(5);
+    }
+
+    public PosterManager(int maxFilms) {
+        this.maxFilms = maxFilms;
+    }
+
+    /** Adding new film to the list of films
+     *
+     */
     public void add(PosterFilm film) {
         PosterFilm[] tmp = new PosterFilm[films.length + 1];
 
@@ -13,32 +27,26 @@ public class PosterManager {
         films = tmp;
     }
 
-    // Return all films in order from old to new
+    /**
+     * Return all films in order from old to new
+     */
     public PosterFilm[] findAll() {
         return films;
     }
 
-    // Return only 5 last added films by default. From new to old
+    /**
+     * Return some last added films by request. From new to old
+     */
     public PosterFilm[] findLast() {
-        int countFilms = 5;
-        int countIterations = countFilms;
-        PosterFilm[] tmp = new PosterFilm[countFilms];
-        for (int i = 0; i < countIterations; i++) {
-            tmp[i] = films[films.length - 1 - i];
-            countFilms--;
+        int resultLength;
+        if (maxFilms > films.length) {
+            resultLength = films.length;
+        } else {
+            resultLength = maxFilms;
         }
-        films = tmp;
-        return films;
-    }
-
-
-    // Return some last added films by request. From new to old
-    public PosterFilm[] findLast(int countFilms) {
-        int countIterations = countFilms;
-        PosterFilm[] tmp = new PosterFilm[countFilms];
-        for (int i = 0; i < countIterations; i++) {
+        PosterFilm[] tmp = new PosterFilm[resultLength];
+        for (int i = 0; i < resultLength; i++) {
             tmp[i] = films[films.length - 1 - i];
-            countFilms--;
         }
         films = tmp;
         return films;
